@@ -12,9 +12,11 @@ const jsonify = (firstName: string, lastName: string, givenUsername: string, giv
 }
 
 const headerJsonConfigurationLogin = (username: string, password: string) => {
+    var token = username + "~" + password
+
     return {
         headers: {
-            'Authorization': username + "~" + password,
+            'Authorization': token
         }
     }
 }
@@ -29,14 +31,15 @@ const headerJsonConfigurationRegister = () => {
 
 const login = (username: string, password: string) => {
     return axios.post(
-        config.apiURL + "users/login", 
+        config.apiURL + "users/login",
+        null,
         headerJsonConfigurationLogin(username, password)
         )
     .then(res => {
         return res;
     })
     .catch((error) => {
-        return error.response.data;
+        return error;
     })
 }
 
@@ -54,7 +57,7 @@ const register = (firstName: string, lastName: string, username: string, email: 
     })
 }
 
-export const PostsAPI = {
+export const UserAPI = {
     login: login,
     register: register
 };

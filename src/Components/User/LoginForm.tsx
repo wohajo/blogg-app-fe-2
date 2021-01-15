@@ -1,5 +1,6 @@
 import { makeStyles, Theme, createStyles, TextField, Button, Grid } from '@material-ui/core';
-import React from 'react'
+import React, { useState } from 'react'
+import { UserAPI } from '../../API/UserAPI';
 import RegisterForm from './RegisterForm';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -19,6 +20,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const LoginForm = () => {
   const classes = useStyles();
+  const [loginValue, setLoginValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+
+  const login = () => {
+    UserAPI.login(loginValue, passwordValue)
+  }
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
@@ -27,6 +34,10 @@ const LoginForm = () => {
           helperText="Login"
           label="Login"
           variant="outlined"
+          value={loginValue}
+          onChange={(e) => {
+            setLoginValue(e.target.value)
+          }}
         />
       </div>
       <div>
@@ -35,10 +46,14 @@ const LoginForm = () => {
           label="Password"
           type="password"
           variant="outlined"
+          value={passwordValue}
+          onChange={(e) => {
+            setPasswordValue(e.target.value)
+        }} 
         />
       </div>
       <Grid container justify = "center">
-        <Button variant="contained" className={classes.button} color="secondary">
+        <Button variant="contained" className={classes.button} color="secondary" onClick={login}>
             Login
           </Button>
           <RegisterForm/>
