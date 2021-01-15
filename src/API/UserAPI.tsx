@@ -15,7 +15,6 @@ const headerJsonConfigurationLogin = (username: string, password: string) => {
     return {
         headers: {
             'Authorization': username + "~" + password,
-            'content-type': 'application/json'
         }
     }
 }

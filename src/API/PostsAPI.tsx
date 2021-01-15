@@ -1,12 +1,10 @@
 import axios from 'axios';
 import config from '../appConfig.json'
+import { PostInterface } from '../Interfaces/Interfaces';
 
-const jsonify = (post: any) => {
+const jsonify = (post: PostInterface) => {
     return JSON.stringify({
-        id: post.id,
-        authors: post.authors,
-        contents: post.contents,
-        tags: post.tags
+        contents: post.contents
     })
 }
 
@@ -19,6 +17,14 @@ const headerJsonConfiguration = (username: string, password: string) => {
     }
 }
 
+const headerJsonAuthorization = (username: string, password: string) => {
+    return {
+        headers: {
+            'Authorization': username + "~" + password,
+        }
+    }
+}
+
 const fetchPosts = () => axios.get(config.apiURL + "posts")
     .then(res => {
     return res.data;
@@ -26,13 +32,13 @@ const fetchPosts = () => axios.get(config.apiURL + "posts")
 
 const fetchPostsByUser = (userId: number, username: string, password: string) => axios.get(
     config.apiURL + "posts/" + userId,
-    headerJsonConfiguration(username, password)
+    headerJsonAuthorization(username, password)
     )
     .then(res => {
     return res.data;
 })
 
-const postPost = (post: any, username: string, password: string) => {
+const postPost = (post: PostInterface, username: string, password: string) => {
     return axios.post(
         config.apiURL + "posts", 
         jsonify(post), 
@@ -46,7 +52,7 @@ const postPost = (post: any, username: string, password: string) => {
     })
 }
 
-const updatePost = (post: any, username: string, password: string) => {
+const updatePost = (post: PostInterface, username: string, password: string) => {
     return axios.put(
         config.apiURL + "posts/" + post.id, 
         jsonify(post), 
@@ -60,9 +66,9 @@ const updatePost = (post: any, username: string, password: string) => {
     })
 }
 
-const deletePost = (postId: number, username: string, password: string) => axios.delete(
-    config.apiURL + "posts/" + postId,
-    headerJsonConfiguration(username, password)
+const deletePost = (post: PostInterface, username: string, password: string) => axios.delete(
+    config.apiURL + "posts/" + post.id,
+    headerJsonAuthorization(username, password)
     )
     .then(res => {
     return res.data;
