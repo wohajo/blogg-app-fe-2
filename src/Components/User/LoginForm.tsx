@@ -1,5 +1,6 @@
 import { makeStyles, Theme, createStyles, TextField, Button, Grid } from '@material-ui/core';
 import React from 'react'
+import RegisterForm from './RegisterForm';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,9 +41,7 @@ const LoginForm = () => {
         <Button variant="contained" className={classes.button} color="secondary">
             Login
           </Button>
-          <Button variant="contained" className={classes.button} color="primary">
-            Register
-          </Button>
+          <RegisterForm/>
       </Grid>
     </form>
   );
