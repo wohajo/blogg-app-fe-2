@@ -1,7 +1,9 @@
-import { makeStyles, Theme, createStyles, TextField, Button, Grid } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, TextField, Button, Grid, Typography } from '@material-ui/core';
 import React, { useState } from 'react'
 import { UserAPI } from '../../API/UserAPI';
 import RegisterForm from './RegisterForm';
+import { Link as MaterialLink } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,6 +16,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     button: {
       margin: 3
+    },
+    title: {
+      textAlign: 'center'
     }
   }),
 );
@@ -58,6 +63,11 @@ const LoginForm = () => {
           </Button>
           <RegisterForm/>
       </Grid>
+      <div className={classes.title}>
+        <Typography color="secondary" variant="caption">
+          <MaterialLink to={'/Posts'} color="secondary" underline="none" component={Link}>Browse posts</MaterialLink>
+        </Typography>
+      </div>
     </form>
   );
 };

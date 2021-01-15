@@ -3,6 +3,7 @@ import theme from "../../theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { RouteComponentProps } from 'react-router-dom';
+import PostArea from '../Post/PostArea';
 
 interface RouteInfo {
     userId: string;
@@ -11,12 +12,13 @@ interface RouteInfo {
 const PostsByUserPage = ({ match } : RouteComponentProps<RouteInfo>) => {
 
     const { params } = match;
-    const userId = +params.userId;
+    const userIdFromURL = +params.userId;
 
     return (
         <ThemeProvider theme={theme}>
-        <CssBaseline />
-    </ThemeProvider>
+            <CssBaseline />
+            <PostArea userId={userIdFromURL}/>
+        </ThemeProvider>
     )
 }
 
