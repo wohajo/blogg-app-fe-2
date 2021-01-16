@@ -3,7 +3,10 @@ import React, { useState } from 'react'
 import { UserAPI } from '../../API/UserAPI';
 import RegisterForm from './RegisterForm';
 import { Link as MaterialLink } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../Interfaces/Interfaces';
+import { setUser } from '../../Redux/actions';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,9 +30,15 @@ const LoginForm = () => {
   const classes = useStyles();
   const [loginValue, setLoginValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state: RootState) => state.sessionUser);
 
   const login = () => {
-    UserAPI.login(loginValue, passwordValue)
+    UserAPI
+    .login(loginValue, passwordValue)
+    .then(async (res) => {
+      await dispatch(setUser(res.data))
+    })
   }
 
   return (
@@ -62,6 +71,7 @@ const LoginForm = () => {
             Login
           </Button>
           <RegisterForm/>
+          {sessionUser ? <Redirect to="/Posts"></Redirect> : <div></div>}
       </Grid>
       <div className={classes.title}>
         <Typography color="secondary" variant="caption">

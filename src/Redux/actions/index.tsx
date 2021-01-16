@@ -27,3 +27,19 @@ export const postsNotLoaded = () => {
         payload: true
     }
 }
+
+// session user
+
+export const setUser = (posts: any) => {
+    return {
+        type: 'SET_USER',
+        payload: posts
+    }
+}
+
+export const resetUser = () => {
+    return {
+        type: 'RESET_USER',
+        payload: null
+    }
+}

@@ -115,11 +115,22 @@ const Navbar = () => {
             </ListItem>
             <ListItem button key={'Posts'}>
                 <ListItemIcon>
-                    <DynamicFeedIcon />
+                    <DynamicFeedIcon/>
                     </ListItemIcon>
                 <ListItemText>
                     <Typography >
                         <MaterialLink to={'/Posts'} underline="none" component={Link}>Posts</MaterialLink>
+                    </Typography>
+                </ListItemText>
+            </ListItem>
+            <Divider/>
+            <ListItem button key={'Logout'}>
+                <ListItemIcon>
+                    <DynamicFeedIcon/>
+                    </ListItemIcon>
+                <ListItemText>
+                    <Typography >
+                        <MaterialLink to={'/'} underline="none" component={Link}>Logout</MaterialLink>
                     </Typography>
                 </ListItemText>
             </ListItem>
