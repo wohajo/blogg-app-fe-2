@@ -53,7 +53,7 @@ const PostWriter = () => {
             <form className={classes.root} noValidate autoComplete="off">
                 <div>
                  <TextField
-                  helperText="Write Your post"
+                  label="Write Your post"
                   variant="outlined"
                   color="secondary"
                   multiline

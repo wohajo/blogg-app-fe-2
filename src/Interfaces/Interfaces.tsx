@@ -14,6 +14,10 @@ export interface PostResponseInterface {
     name: string
 }
 
+export interface DeleteProps {
+    id: number
+}
+
 export interface RootState {
     posts: Array<PostResponseInterface>,
     isSpinnerInPosts: boolean,

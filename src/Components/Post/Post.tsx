@@ -1,8 +1,10 @@
-import { Card, CardContent, makeStyles, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, makeStyles, Typography } from '@material-ui/core';
 import React from 'react'
-import { PostResponseInterface } from '../../Interfaces/Interfaces'
+import { PostResponseInterface, RootState } from '../../Interfaces/Interfaces'
 import { Link as MaterialLink } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import DeleteDialog from '../Dialogs/DeleteDialog';
 
 const useStyles = makeStyles({
     root: {
@@ -18,6 +20,25 @@ const useStyles = makeStyles({
 
 const Post = (props: PostResponseInterface) => {
     const classes = useStyles();
+    const password = useSelector((state: RootState) => state.password);
+    const sessionUser = useSelector((state: RootState) => state.sessionUser);
+
+    const showButtons = () => {
+      if (password === null) {
+        return (<div></div>)
+      } else if (sessionUser.isAdmin || sessionUser.id === props.userId) {
+        return (
+          <CardActions>
+          <Button size="small" color="primary">
+            Edit
+          </Button>
+          <DeleteDialog id={props.id}/>
+        </CardActions>
+        )
+      } else {
+        return (<div></div>)
+      }
+    }
 
     return (
       <Card className={classes.root} variant="outlined">
@@ -29,6 +50,7 @@ const Post = (props: PostResponseInterface) => {
             {props.contents}
           </Typography>
         </CardContent>
+        {showButtons()}
       </Card>
     );
 }

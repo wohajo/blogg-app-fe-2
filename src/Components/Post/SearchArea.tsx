@@ -1,4 +1,3 @@
-import classes from '*.module.css';
 import { Button, createStyles, Grid, makeStyles, TextField, Theme } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -67,6 +66,7 @@ const SearchArea = () => {
                     </Button>
                 </div>
             </form>
+            
         </Grid>
     )
 }

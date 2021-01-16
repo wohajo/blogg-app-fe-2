@@ -67,8 +67,8 @@ const updatePost = (post: PostInterface, username: string, password: string) => 
     })
 }
 
-const deletePost = (post: PostInterface, username: string, password: string) => axios.delete(
-    config.apiURL + "posts/" + post.id,
+const deletePost = (postId: number, username: string, password: string) => axios.delete(
+    config.apiURL + "posts/" + postId,
     headerJsonAuthorization(username, password)
     )
     .then(res => {
