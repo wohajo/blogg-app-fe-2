@@ -31,12 +31,13 @@ const fetchPosts = () => axios.get(config.apiURL + "posts")
 })
 
 const fetchPostsByUser = (userId: number, username: string, password: string) => axios.get(
-    config.apiURL + "posts/" + userId,
-    headerJsonAuthorization(username, password)
+    config.apiURL + "posts/user/" + userId,
+    headerJsonConfiguration(username, password)
     )
     .then(res => {
+        console.log(config.apiURL + "posts/user/" + userId)
     return res.data;
-})
+    })
 
 const postPost = (post: PostInterface, username: string, password: string) => {
     return axios.post(

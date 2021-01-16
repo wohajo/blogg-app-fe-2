@@ -4,7 +4,7 @@ export interface PostInterface {
 }
 
 export interface PostAreaProps {
-    userId?: number
+    userId: number
 }
 
 export interface PostResponseInterface {

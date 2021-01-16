@@ -7,7 +7,7 @@ import setSessionUserReducer from './setSessionUserReducer';
 const allReducers = combineReducers({
     posts: setPostsReducer,
     postsSpinner: setPagePostsSpinnerReducer,
-    sessionUSer: setSessionUserReducer,
+    sessionUser: setSessionUserReducer,
     password: setPasswordReducer
 })
 

@@ -1,6 +1,8 @@
 import { Card, CardContent, makeStyles, Typography } from '@material-ui/core';
 import React from 'react'
 import { PostResponseInterface } from '../../Interfaces/Interfaces'
+import { Link as MaterialLink } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
@@ -20,9 +22,9 @@ const Post = (props: PostResponseInterface) => {
     return (
       <Card className={classes.root} variant="outlined">
         <CardContent>
-          <Typography variant="h5" component="h2">
-            {props.name}
-          </Typography>
+            <Typography >
+                <MaterialLink to={'/Posts/User/' + props.userId} variant="h5" underline="none" component={Link}>{props.name}</MaterialLink>
+            </Typography>
           <Typography className={classes.pos}>
             {props.contents}
           </Typography>

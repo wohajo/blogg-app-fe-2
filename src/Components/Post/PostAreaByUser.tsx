@@ -1,27 +1,38 @@
 import { createStyles, Grid, makeStyles, Paper, Theme, Typography } from '@material-ui/core';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { PostsAPI } from '../../API/PostsAPI'
-import { RootState } from '../../Interfaces/Interfaces'
+import { PostAreaProps, RootState } from '../../Interfaces/Interfaces'
 import { postsLoaded, postsNotLoaded, resetPosts, setPosts } from '../../Redux/actions';
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
 import Post from './Post';
 
-const PostArea = () => {
+const PostAreaByUser = (props: PostAreaProps) => {
 
     const dispatch = useDispatch();
     const posts = useSelector((state: RootState) => state.posts);
     const isSpinnerVisible = useSelector((state: RootState) => state.isSpinnerInPosts);
+    const sessionUser = useSelector((state: RootState) => state.sessionUser);
+    const password = useSelector((state: RootState) => state.password);
+    const history = useHistory();
+
 
     useEffect(() => {
-        dispatch(postsNotLoaded())
-        dispatch(resetPosts())
-        PostsAPI
-        .fetchPosts()
-        .then(async (data) => {
-            await dispatch(setPosts(data))
-            dispatch(postsLoaded())
-        })
+        if (password === null) {
+            history.push({
+                pathname:  "/"
+            });
+        } else {
+            dispatch(postsNotLoaded())
+            dispatch(resetPosts())
+            PostsAPI
+            .fetchPostsByUser(props.userId, sessionUser.username, password)
+            .then(async (data) => {
+                await dispatch(setPosts(data))
+                dispatch(postsLoaded())
+            })
+        }
     }, [dispatch])
 
     const useStyles = makeStyles((theme: Theme) =>
@@ -82,4 +93,4 @@ const PostArea = () => {
     )
 }
 
-export default PostArea
+export default PostAreaByUser
