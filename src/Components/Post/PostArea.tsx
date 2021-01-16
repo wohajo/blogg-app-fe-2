@@ -6,11 +6,13 @@ import { RootState } from '../../Interfaces/Interfaces'
 import { postsLoaded, postsNotLoaded, resetPosts, setPosts } from '../../Redux/actions';
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
 import Post from './Post';
+import PostWriter from './PostWriter';
 
 const PostArea = () => {
 
     const dispatch = useDispatch();
     const posts = useSelector((state: RootState) => state.posts);
+    const password = useSelector((state: RootState) => state.password);
     const isSpinnerVisible = useSelector((state: RootState) => state.isSpinnerInPosts);
 
     useEffect(() => {
@@ -59,7 +61,11 @@ const PostArea = () => {
     } 
 
     const showWriteOrNot = () => {
-        return <div></div>
+        if (password === null) {
+            return (<div></div>)
+        } else {
+            return (<PostWriter/>)
+        }
     }
 
     const classes = useStyles();

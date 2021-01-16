@@ -16,12 +16,15 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
-import { Link as MaterialLink } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Button, Link as MaterialLink } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../Interfaces/Interfaces';
 
 const useStyles = makeStyles((theme:Theme) => ({
-root: {
+    root: {
         flexGrow: 1,
+        marginBottom: 10
     },
         menuButton: {
         marginRight: theme.spacing(2),
@@ -69,6 +72,10 @@ const Navbar = () => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
+    const password = useSelector((state: RootState) => state.password);
+    const sessionUser = useSelector((state: RootState) => state.sessionUser);
+    const history = useHistory();
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -76,6 +83,18 @@ const Navbar = () => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const goToMyPosts = () => {
+        if (password === null) {
+            history.push({
+                pathname:  "/"
+            });
+        } else {
+            history.push({
+                pathname:  "/Posts/User/" + sessionUser.id
+            });
+        }
+    }
 
     return (
     <div className={classes.root}>
@@ -103,13 +122,22 @@ const Navbar = () => {
         </div>
         <Divider />
         <List>
-            <ListItem button key={'MainPage'}>
+        <ListItem button key={'Search'}>
+                <ListItemIcon>
+                    <HomeIcon />
+                    </ListItemIcon>
+                <ListItemText>
+                        <Button onClick={goToMyPosts} color="primary">My posts</Button>
+                </ListItemText>
+            </ListItem>
+            <Divider/>
+            <ListItem button key={'Search'}>
                 <ListItemIcon>
                     <HomeIcon />
                     </ListItemIcon>
                 <ListItemText>
                     <Typography >
-                        <MaterialLink to={'/'} underline="none" component={Link}>Main page</MaterialLink>
+                        <MaterialLink to={'/Search'} underline="none" component={Link}>Search</MaterialLink>
                     </Typography>
                 </ListItemText>
             </ListItem>

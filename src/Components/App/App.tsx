@@ -5,6 +5,7 @@ import LandingPage from '../Pages/LandingPage';
 import PostsPage from '../Pages/PostsPage';
 import './App.css';
 import PostsByUserPage from '../Pages/PostsByUserPage';
+import SearchPage from '../Pages/SearchPage';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Switch>
         <Route path="/" component={LandingPage} exact/>
         <Route path="/Posts" component={PostsPage} exact/>
+        <Route path="/Search" component={SearchPage} exact/>
         <Route path="/Posts/User/:userId" component={PostsByUserPage} exact/>
         <Route component={ErrorPage} />
       </Switch>
