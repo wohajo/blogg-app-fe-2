@@ -3,7 +3,7 @@ const setSessionUserReducer = (state = null, action: any) => {
         case 'SET_USER':
             return action.payload;
         case 'RESET_USER':
-            return state;
+            return null;
         default:
             return state;
     }

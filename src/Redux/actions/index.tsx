@@ -43,3 +43,19 @@ export const resetUser = () => {
         payload: null
     }
 }
+
+// pswrd
+
+export const setPassword = (password: string) => {
+    return {
+        type: 'SET_PSWRD',
+        payload: password
+    }
+}
+
+export const resetPassword = () => {
+    return {
+        type: 'RESET_PSWRD',
+        payload: null
+    }
+}

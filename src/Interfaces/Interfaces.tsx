@@ -17,11 +17,13 @@ export interface PostResponseInterface {
 export interface RootState {
     posts: Array<PostResponseInterface>,
     isSpinnerInPosts: boolean,
-    sessionUser: SessionUserInterface
+    sessionUser: SessionUserInterface,
+    password: string
 }
 
 export interface SessionUserInterface {
     id: number,
+    username: string,
     name: string,
     email: string,
     isAdmin: boolean

@@ -3,7 +3,7 @@ const setPostsReducer = (state = null, action: any) => {
         case 'SET_POSTS':
             return action.payload;
         case 'RESET_POSTS':
-            return state;
+            return null;
         default:
             return state;
     }
