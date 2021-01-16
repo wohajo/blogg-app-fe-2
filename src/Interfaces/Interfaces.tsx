@@ -1,8 +1,3 @@
-export interface PostInterface {
-    id: number,
-    contents: string
-}
-
 export interface PostAreaProps {
     userId: number
 }
@@ -16,6 +11,11 @@ export interface PostResponseInterface {
 
 export interface DeleteProps {
     id: number
+}
+
+export interface EditDialogProps {
+    id: number,
+    contents: string
 }
 
 export interface RootState {

@@ -5,6 +5,7 @@ import { Link as MaterialLink } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import DeleteDialog from '../Dialogs/DeleteDialog';
+import EditDialog from '../Dialogs/EditDialog';
 
 const useStyles = makeStyles({
     root: {
@@ -29,9 +30,7 @@ const Post = (props: PostResponseInterface) => {
       } else if (sessionUser.isAdmin || sessionUser.id === props.userId) {
         return (
           <CardActions>
-          <Button size="small" color="primary">
-            Edit
-          </Button>
+          <EditDialog id={props.id} contents={props.contents}/>
           <DeleteDialog id={props.id}/>
         </CardActions>
         )

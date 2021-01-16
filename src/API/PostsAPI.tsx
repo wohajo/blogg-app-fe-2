@@ -1,6 +1,5 @@
 import axios from 'axios';
 import config from '../appConfig.json'
-import { PostInterface } from '../Interfaces/Interfaces';
 
 const jsonify = (givenContents: string) => {
     return JSON.stringify({
@@ -53,10 +52,10 @@ const postPost = (contents: string, username: string, password: string) => {
     })
 }
 
-const updatePost = (post: PostInterface, username: string, password: string) => {
+const updatePost = (postId: number, contents: string, username: string, password: string) => {
     return axios.put(
-        config.apiURL + "posts/" + post.id, 
-        jsonify(post.contents), 
+        config.apiURL + "posts/" + postId, 
+        jsonify(contents), 
         headerJsonConfiguration(username, password)
         )
     .then(res => {
