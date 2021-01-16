@@ -2,9 +2,9 @@ import axios from 'axios';
 import config from '../appConfig.json'
 import { PostInterface } from '../Interfaces/Interfaces';
 
-const jsonify = (post: PostInterface) => {
+const jsonify = (givenContents: string) => {
     return JSON.stringify({
-        contents: post.contents
+        contents: givenContents
     })
 }
 
@@ -39,10 +39,10 @@ const fetchPostsByUser = (userId: number, username: string, password: string) =>
     return res.data;
     })
 
-const postPost = (post: PostInterface, username: string, password: string) => {
+const postPost = (contents: string, username: string, password: string) => {
     return axios.post(
         config.apiURL + "posts", 
-        jsonify(post), 
+        jsonify(contents), 
         headerJsonConfiguration(username, password)
         )
     .then(res => {
@@ -56,7 +56,7 @@ const postPost = (post: PostInterface, username: string, password: string) => {
 const updatePost = (post: PostInterface, username: string, password: string) => {
     return axios.put(
         config.apiURL + "posts/" + post.id, 
-        jsonify(post), 
+        jsonify(post.contents), 
         headerJsonConfiguration(username, password)
         )
     .then(res => {

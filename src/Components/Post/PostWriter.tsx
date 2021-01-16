@@ -1,5 +1,10 @@
 import { makeStyles, Theme, createStyles, Grid, TextField, Button } from '@material-ui/core';
 import React from 'react'
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { PostsAPI } from '../../API/PostsAPI';
+import { RootState } from '../../Interfaces/Interfaces';
+import { postsLoaded, postsNotLoaded, resetPosts, setPosts } from '../../Redux/actions';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,9 +28,24 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const PostWriter = () => {
     const classes = useStyles();
+    const password = useSelector((state: RootState) => state.password);
+    const sessionUser = useSelector((state: RootState) => state.sessionUser);
+    const [postValue, setPostValue] = useState('');
+    const dispatch = useDispatch();
 
-    const handleSend = () => {
 
+    const handleSend = async () => {
+        if (password !== null) {
+            await PostsAPI.postPost(postValue, sessionUser.username, password)
+            dispatch(postsNotLoaded())
+            dispatch(resetPosts())
+            PostsAPI
+            .fetchPosts()
+            .then(async (data) => {
+                await dispatch(setPosts(data))
+                dispatch(postsLoaded())
+            })
+        }
     }
 
     return (
@@ -38,7 +58,11 @@ const PostWriter = () => {
                   color="secondary"
                   multiline
                   rows={6}
-                  className={classes.searchBox} 
+                  className={classes.searchBox}
+                  value={postValue}
+                    onChange={(e) => {
+                        setPostValue(e.target.value)
+                    }} 
                   />
                 </div>
                 <div className={classes.button}>
