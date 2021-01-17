@@ -15,6 +15,4 @@ const ErrorPage = () => {
     )
 }
 
-//TODO if not logged in redirect
-
 export default ErrorPage
