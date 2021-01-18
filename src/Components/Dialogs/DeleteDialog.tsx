@@ -9,11 +9,13 @@ import { DeleteProps, RootState } from '../../Interfaces/Interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { PostsAPI } from '../../API/PostsAPI';
 import { postsNotLoaded, resetPosts, setPosts, postsLoaded } from '../../Redux/actions';
+import { useHistory } from 'react-router-dom';
 
 const DeleteDialog = (props: DeleteProps) => {
   const [open, setOpen] = React.useState(false);
   const password = useSelector((state: RootState) => state.password);
   const sessionUser = useSelector((state: RootState) => state.sessionUser);
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleClickOpen = () => {
@@ -25,7 +27,12 @@ const DeleteDialog = (props: DeleteProps) => {
   };
 
   const handleDelete = async () => {
-    await PostsAPI.deletePost(props.id, sessionUser.username, password)
+    await PostsAPI
+    .deletePost(props.id, sessionUser.username, password)
+    .catch((err) => {
+      alert(err.response.data.message)
+    })
+
     dispatch(postsNotLoaded())
         dispatch(resetPosts())
         PostsAPI
@@ -34,7 +41,9 @@ const DeleteDialog = (props: DeleteProps) => {
             await dispatch(setPosts(data))
             dispatch(postsLoaded())
         })
-
+    history.push({
+      pathname:  "/Posts"
+    });
     setOpen(false);
   };
 

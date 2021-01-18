@@ -50,7 +50,12 @@ const EditDialog = (props: EditDialogProps) => {
     };
 
     const handleEdit = async () => {
-        await PostsAPI.updatePost(props.id, postValue, sessionUser.username, password)
+        await PostsAPI
+        .updatePost(props.id, postValue, sessionUser.username, password)
+        .catch((err) => {
+          alert(err.response.data.message)
+        })
+        
         dispatch(postsNotLoaded())
         dispatch(resetPosts())
         PostsAPI

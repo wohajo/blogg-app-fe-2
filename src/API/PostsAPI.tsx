@@ -34,8 +34,7 @@ const fetchPostsByUser = (userId: number, username: string, password: string) =>
     headerJsonConfiguration(username, password)
     )
     .then(res => {
-        console.log(config.apiURL + "posts/user/" + userId)
-    return res.data;
+        return res.data;
     })
 
 const postPost = (contents: string, username: string, password: string) => {
@@ -44,12 +43,6 @@ const postPost = (contents: string, username: string, password: string) => {
         jsonify(contents), 
         headerJsonConfiguration(username, password)
         )
-    .then(res => {
-        return res;
-    })
-    .catch((error) => {
-        return error.response.data;
-    })
 }
 
 const updatePost = (postId: number, contents: string, username: string, password: string) => {
@@ -58,12 +51,6 @@ const updatePost = (postId: number, contents: string, username: string, password
         jsonify(contents), 
         headerJsonConfiguration(username, password)
         )
-    .then(res => {
-        return res;
-    })
-    .catch((error) => {
-        return error.response.data;
-    })
 }
 
 const deletePost = (postId: number, username: string, password: string) => axios.delete(

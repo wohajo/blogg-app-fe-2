@@ -45,7 +45,11 @@ const LoginForm = () => {
       dispatch(setPassword(passwordValue))
     })
     .catch((error) => {
-      console.log("wrong data")
+      if (error.response.status === 400) {
+        alert("Invalid data.")
+      } else if (error.response.status === 401) {
+        alert("Wrong email or password.")
+      }
     })
   }
 

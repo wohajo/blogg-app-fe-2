@@ -36,7 +36,12 @@ const PostWriter = () => {
 
     const handleSend = async () => {
         if (password !== null) {
-            await PostsAPI.postPost(postValue, sessionUser.username, password)
+            await PostsAPI
+            .postPost(postValue, sessionUser.username, password)
+            .catch((err) => {
+                alert(err.response.data.message)
+            })
+
             dispatch(postsNotLoaded())
             dispatch(resetPosts())
             PostsAPI

@@ -35,12 +35,6 @@ const login = (username: string, password: string) => {
         null,
         headerJsonConfigurationLogin(username, password)
         )
-    .then(res => {
-        return res;
-    })
-    .catch((error) => {
-        return error;
-    })
 }
 
 const register = (firstName: string, lastName: string, username: string, email: string, password: string) => {
@@ -49,12 +43,6 @@ const register = (firstName: string, lastName: string, username: string, email: 
         jsonify(firstName, lastName, username, email, password),
         headerJsonConfigurationRegister() 
         )
-    .then(res => {
-        return res;
-    })
-    .catch((error) => {
-        return error.response.data;
-    })
 }
 
 export const UserAPI = {

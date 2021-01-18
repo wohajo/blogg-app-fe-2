@@ -46,6 +46,10 @@ const RegisterForm = () => {
             usernameValue,
             emailValue,
             confPasswordValue)
+        .catch((error) => {
+          var errorMessages = error.response.data.message.split("||")
+          alert(errorMessages[0])
+        })
     }
   };
 
