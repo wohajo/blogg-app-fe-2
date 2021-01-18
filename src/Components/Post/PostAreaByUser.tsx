@@ -5,14 +5,14 @@ import { useHistory } from 'react-router-dom';
 import { PostsAPI } from '../../API/PostsAPI'
 import { PostAreaProps, RootState } from '../../Interfaces/Interfaces'
 import { postsLoaded, postsNotLoaded, resetPosts, setPosts } from '../../Redux/actions';
-import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Post from './Post';
 
 const PostAreaByUser = (props: PostAreaProps) => {
 
     const dispatch = useDispatch();
     const posts = useSelector((state: RootState) => state.posts);
-    const isSpinnerVisible = useSelector((state: RootState) => state.isSpinnerInPosts);
+    const isSpinnerVisible = useSelector((state: RootState) => state.postsSpinner);
     const sessionUser = useSelector((state: RootState) => state.sessionUser);
     const password = useSelector((state: RootState) => state.password);
     const history = useHistory();

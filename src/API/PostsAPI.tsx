@@ -37,6 +37,15 @@ const fetchPostsByUser = (userId: number, username: string, password: string) =>
         return res.data;
     })
 
+
+const fetchPostsByWords = (contents: string, username: string, password: string) => axios.get(
+    config.apiURL + "posts/find/contents/" + contents,
+    headerJsonConfiguration(username, password)
+    )
+    .then(res => {
+        return res.data;
+    })
+
 const postPost = (contents: string, username: string, password: string) => {
     return axios.post(
         config.apiURL + "posts", 
@@ -64,6 +73,7 @@ const deletePost = (postId: number, username: string, password: string) => axios
 export const PostsAPI = {
     fetchPosts: fetchPosts,
     fetchPostsByUser: fetchPostsByUser,
+    fetchPostsByWords: fetchPostsByWords,
     deletePost: deletePost,
     postPost: postPost,
     updatePost: updatePost

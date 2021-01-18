@@ -20,7 +20,7 @@ export interface EditDialogProps {
 
 export interface RootState {
     posts: Array<PostResponseInterface>,
-    isSpinnerInPosts: boolean,
+    postsSpinner: boolean,
     sessionUser: SessionUserInterface,
     password: string
 }

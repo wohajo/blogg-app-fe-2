@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PostsAPI } from '../../API/PostsAPI'
 import { RootState } from '../../Interfaces/Interfaces'
 import { postsLoaded, postsNotLoaded, resetPosts, setPosts } from '../../Redux/actions';
-import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Post from './Post';
 import PostWriter from './PostWriter';
 
@@ -13,7 +13,7 @@ const PostArea = () => {
     const dispatch = useDispatch();
     const posts = useSelector((state: RootState) => state.posts);
     const password = useSelector((state: RootState) => state.password);
-    const isSpinnerVisible = useSelector((state: RootState) => state.isSpinnerInPosts);
+    const isSpinnerVisible = useSelector((state: RootState) => state.postsSpinner);
 
     useEffect(() => {
         dispatch(postsNotLoaded())

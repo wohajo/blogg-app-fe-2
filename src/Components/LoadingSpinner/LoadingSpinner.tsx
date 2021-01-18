@@ -1,7 +1,7 @@
 import CircularProgress from '@material-ui/core/CircularProgress';
 import React from 'react'
 
-export const LoadingSpinner = () => {
+const LoadingSpinner = () => {
 
 return (
     <div style={{textAlign: "center"}}>
@@ -9,3 +9,5 @@ return (
   </div>
   )
 };
+
+export default LoadingSpinner
