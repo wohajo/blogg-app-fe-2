@@ -1,3 +1,5 @@
+import { BestUserInterface } from "../../Interfaces/Interfaces"
+
 export const setPosts = (posts: any) => {
     return {
         type: 'SET_POSTS',
@@ -56,6 +58,22 @@ export const setPassword = (password: string) => {
 export const resetPassword = () => {
     return {
         type: 'RESET_PSWRD',
+        payload: null
+    }
+}
+
+// best users
+
+export const setBestUsers = (users: any) => {
+    return {
+        type: 'SET_BEST_USERS',
+        payload: users
+    }
+}
+
+export const resetBestUsers = () => {
+    return {
+        type: 'RESET_BEST_USERS',
         payload: null
     }
 }

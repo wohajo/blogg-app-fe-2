@@ -122,7 +122,7 @@ const Navbar = () => {
         </div>
         <Divider />
         <List>
-        <ListItem button key={'Search'}>
+        <ListItem button key={'MyPosts'}>
                 <ListItemIcon>
                     <HomeIcon />
                     </ListItemIcon>
@@ -151,6 +151,16 @@ const Navbar = () => {
                     </Typography>
                 </ListItemText>
             </ListItem>
+            <ListItem button key={'Statistics'}>
+                <ListItemIcon>
+                    <HomeIcon />
+                    </ListItemIcon>
+                <ListItemText>
+                    <Typography >
+                        <MaterialLink to={'/Statistics'} underline="none" component={Link}>Statistics</MaterialLink>
+                    </Typography>
+                </ListItemText>
+            </ListItem>
             <Divider/>
             <ListItem button key={'Logout'}>
                 <ListItemIcon>
@@ -168,6 +178,6 @@ const Navbar = () => {
 );
 }
 
-export default Navbar;
+// TODO icons
 
-// TODO
+export default Navbar;

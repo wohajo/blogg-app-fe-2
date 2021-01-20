@@ -31,6 +31,4 @@ const SearchPage = () => {
     )
 }
 
-//TODO if not logged in redirect
-
 export default SearchPage

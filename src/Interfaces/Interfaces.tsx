@@ -22,7 +22,14 @@ export interface RootState {
     posts: Array<PostResponseInterface>,
     postsSpinner: boolean,
     sessionUser: SessionUserInterface,
-    password: string
+    password: string,
+    bestUsers: Array<BestUserInterface>
+}
+
+export interface BestUserInterface {
+    id: number,
+    name: string,
+    count: number
 }
 
 export interface SessionUserInterface {

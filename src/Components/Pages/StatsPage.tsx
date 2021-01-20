@@ -1,21 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import theme from "../../theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { RouteComponentProps, useHistory } from 'react-router-dom';
+import SearchArea from '../Post/SearchArea';
 import Navbar from '../Navbar/Navbar';
-import PostAreaByUser from '../Post/PostAreaByUser';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { RootState } from '../../Interfaces/Interfaces';
+import { useEffect } from 'react';
+import StatsArea from '../StatsArea/StatsArea';
 
-interface RouteInfo {
-    userId: string;
-}
-
-const PostsByUserPage = ({ match } : RouteComponentProps<RouteInfo>) => {
-
-    const { params } = match;
-    const userIdFromURL = +params.userId;
+const StatsPage = () => {
 
     const password = useSelector((state: RootState) => state.password);
     const history = useHistory();
@@ -30,11 +25,11 @@ const PostsByUserPage = ({ match } : RouteComponentProps<RouteInfo>) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Navbar />
-            <PostAreaByUser userId={userIdFromURL}/>
-        </ThemeProvider>
+        <CssBaseline />
+        <Navbar/>
+        <StatsArea/>
+    </ThemeProvider>
     )
 }
 
-export default PostsByUserPage
+export default StatsPage
