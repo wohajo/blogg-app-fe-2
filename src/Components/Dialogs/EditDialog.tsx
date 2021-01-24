@@ -81,7 +81,7 @@ const EditDialog = (props: EditDialogProps) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Edit post"}</DialogTitle>
         <DialogContent>
         <Grid container justify = "center" className={classes.writer}>
             <form className={classes.root} noValidate autoComplete="off">
